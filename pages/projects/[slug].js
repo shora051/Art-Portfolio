@@ -14,9 +14,12 @@ export default function ProjectDetail({ project }) {
       <Head>
         <title>{project.title} • Saanvi</title>
       </Head>
-      <div className="container">
-        <h1>{project.title}</h1>
-        <div className="carousel">
+      <div className="container projectPage">
+        <div className="projectHeader">
+          <h1 className="projectTitle">{project.title}</h1>
+        </div>
+
+        <div className="galleryCard">
           <Swiper modules={[Navigation, Pagination, A11y]} navigation pagination={{ clickable: true }}>
             {project.images?.map((img) => (
               <SwiperSlide key={img.url}>
@@ -26,16 +29,24 @@ export default function ProjectDetail({ project }) {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
-        <article className="desc">{project.description}</article>
+          </div>
+         <div style={{ height: '50px' }}></div>
+        <article className="projectBody">{project.description}</article>
       </div>
 
       <style jsx>{`
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
-        h1 { margin-bottom: 1rem; }
-        .carousel { background: #fff; border: 2px solid #ffd1f3; border-radius: 16px; padding: 0.5rem; box-shadow: 0 10px 30px rgba(255,0,128,0.08); }
-        .slideImg { position: relative; width: 100%; height: 60vh; }
-        .desc { margin-top: 1.25rem; line-height: 1.7; background: #fff8ff; border: 2px solid #ff8bd1; border-radius: 12px; padding: 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .projectHeader { display: flex; justify-content: center; }
+        .projectTitle { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-weight: 800; font-size: clamp(1.8rem, 4.5vw, 2.8rem); letter-spacing: 0.2px; margin-bottom: 0.75rem; 
+          background: linear-gradient(90deg, var(--pink-400), var(--blue-400)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+        .galleryCard { position: relative; overflow: hidden; border-radius: 18px; border: 2px solid var(--blue-200); padding: 0.5rem; background:
+          linear-gradient(135deg, var(--blue-50), #ffffff 60%, var(--pink-50)); box-shadow: 0 14px 34px rgba(132,202,255,0.14); }
+        .galleryCard :global(.swiper) { width: 100%; height: auto; }
+        .slideImg { position: relative; width: 100%; aspect-ratio: 16/9; background: #fff; border-radius: 12px; }
+        @media (max-width: 800px) { .slideImg { aspect-ratio: 4/3; } }
+
+        .projectBody { margin-top: 1.25rem; font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-size: 1.05rem; line-height: 1.75; color: #3a3a3a; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto; }
       `}</style>
     </>
   );

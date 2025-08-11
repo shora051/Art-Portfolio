@@ -6,6 +6,7 @@ const ProjectSchema = new mongoose.Schema(
     slug: { type: String, required: true, unique: true, index: true },
     blurb: { type: String },
     description: { type: String, required: true },
+    published: { type: Boolean, default: true },
     images: [
       {
         url: { type: String, required: true },
